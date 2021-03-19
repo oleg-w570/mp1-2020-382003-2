@@ -4,7 +4,7 @@
 
 class matrix
 {
-	double** A;
+	vector* M;
 	int n, m;
 public:
 	matrix(int n = 1, int m = 1);
@@ -23,7 +23,7 @@ public:
 	friend matrix operator*(double p, const matrix& other);
 	friend std::ostream& operator<<(std::ostream& os, const matrix& mat);
 	friend std::istream& operator>>(std::istream& is, const matrix& mat);
-	double* operator[](int i);
-	const double* operator[](int i) const;
+	vector& operator[](int i);
+	const vector& operator[](int i) const;
 	friend class Solver;
 };
