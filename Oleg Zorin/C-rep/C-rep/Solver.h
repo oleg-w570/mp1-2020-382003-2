@@ -4,10 +4,10 @@
 class Solver
 {
 	matrix A;
-	vector x, b;
+	Vector x, b;
 	int size;
 public:
-	Solver(const matrix& A, const vector& x, const vector& b);
+	Solver(const matrix& A, const Vector& x, const Vector& b);
 	Solver();
 	void Gauss();
 	void PrintM();

@@ -3,7 +3,7 @@
 #include <cmath>
 #define EPS 1e-3
 
-Solver::Solver(const matrix& A, const vector& x, const vector& b)
+Solver::Solver(const matrix& A, const Vector& x, const Vector& b)
 {
 	this->A = A;
 	this->x = x;
@@ -16,7 +16,7 @@ Solver::Solver()
 	std::cout << "Enter size: ";
 	std::cin >> size;
 	matrix A(size, size);
-	vector x(size), b(size);
+	Vector x(size), b(size);
 	for (int i = 0; i < size; i++)
 		for (int j = 0; j < size; j++)
 		{
@@ -37,7 +37,7 @@ void Solver::Gauss()
 {
 	double t1, t2, a;
 	matrix copyA = A;
-	vector copyB = b;
+	Vector copyB = b;
 
 	for (int k = 0; k < size - 1; k++)
 	{
@@ -97,17 +97,17 @@ void Solver::PrintAns()
 
 bool Solver::Check()
 {
-	vector tmp = A * x;
+	Vector tmp = A * x;
 	return tmp == b;
 }
 
 void Solver::Jacobi()
 {
-	vector tmp(size);
+	Vector tmp(size);
 	int k = 0;
 	double norm;
 
-	x = 0.2;
+	x = 0.0;
 
 	do
 	{

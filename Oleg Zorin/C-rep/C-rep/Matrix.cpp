@@ -8,9 +8,9 @@ matrix::matrix(int n, int m)
 
 	row = n;
 	col = m;
-	val = new vector[row];
+	val = new Vector[row];
 	for (int i = 0; i < row; i++)
-		val[i] = vector(col);
+		val[i] = Vector(col);
 }
 
 matrix::matrix(int n, int m, int max)
@@ -20,16 +20,16 @@ matrix::matrix(int n, int m, int max)
 
 	row = n;
 	col = m;
-	val = new vector[row];
+	val = new Vector[row];
 	for (int i = 0; i < row; i++)
-		val[i] = vector(col, max);
+		val[i] = Vector(col, max);
 }
 
 matrix::matrix(const matrix& other)
 {
 	row = other.row;
 	col = other.col;
-	val = new vector[row];
+	val = new Vector[row];
 	for (int i = 0; i < row; i++)
 		val[i] = other.val[i];
 }
@@ -41,7 +41,7 @@ matrix::~matrix()
 
 void matrix::swap(int a, int b)
 {
-	vector tmp;
+	Vector tmp;
 	tmp = val[a];
 	val[a] = val[b];
 	val[b] = tmp;
@@ -56,7 +56,7 @@ matrix& matrix::operator=(const matrix& other)
 		delete[] val;
 		row = other.row;
 		col = other.col;
-		val = new vector[row];
+		val = new Vector[row];
 		for (int i = 0; i < row; i++)
 			val[i] = other.val[i];
 
@@ -164,26 +164,26 @@ std::istream& operator>>(std::istream& is, const matrix& mat)
 	return is;
 }
 
-vector& matrix::operator[](int i)
+Vector& matrix::operator[](int i)
 {
 	if (i < 0 || i >= row)
 		throw std::exception("Wrong row");
 	return val[i];
 }
 
-const vector& matrix::operator[](int i) const
+const Vector& matrix::operator[](int i) const
 {
 	if (i < 0 || i >= row)
 		throw std::exception("Wrong row");
 	return val[i];
 }
 
-vector operator*(const matrix& M, const vector& v)
+Vector operator*(const matrix& M, const Vector& v)
 {
 	if (M.col != v.GetSize())
 		throw std::exception("Wrong sizes");
 
-	vector res(M.row);
+	Vector res(M.row);
 	for (int i = 0; i < M.row; i++)
 	{
 		for (int j = 0; j < M.col; j++)

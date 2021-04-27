@@ -4,7 +4,7 @@
 #include <iostream>
 #define EPS 1e-10
 
-vector::vector(int n)
+Vector::Vector(int n)
 {
 	if (n <= 0)
 		throw std::exception("Size must be > 0");
@@ -17,7 +17,7 @@ vector::vector(int n)
 	}
 }
 
-vector::vector(int n, double * v)
+Vector::Vector(int n, double * v)
 {
 	if (n <= 0)
 		throw std::exception("Size must be > 0");
@@ -30,7 +30,7 @@ vector::vector(int n, double * v)
 	}
 }
 
-vector::vector(int n, int max)
+Vector::Vector(int n, int max)
 {
 	if (n <= 0)
 		throw std::exception("Size must be > 0");
@@ -44,7 +44,7 @@ vector::vector(int n, int max)
 	}
 }
 
-vector::vector(const vector & v)
+Vector::Vector(const Vector & v)
 {
 	size = v.size;
 	value = new double[size];
@@ -54,12 +54,12 @@ vector::vector(const vector & v)
 	}
 }
 
-vector::~vector()
+Vector::~Vector()
 {
 	delete[] value;
 }
 
-vector & vector::operator=(const vector & v)
+Vector & Vector::operator=(const Vector & v)
 {
 	if (this == &v)
 		return *this;
@@ -81,11 +81,11 @@ vector & vector::operator=(const vector & v)
 	}
 }
 
-vector vector::operator+(const vector & v) const
+Vector Vector::operator+(const Vector & v) const
 {
 	int max = (size > v.size) ? size : v.size;
 	int min = (size > v.size) ? v.size : size;
-	vector res(max);
+	Vector res(max);
 	for (int i = 0; i < min; i++)
 		res.value[i] = value[i] + v.value[i];
 	if (size > v.size)
@@ -97,11 +97,11 @@ vector vector::operator+(const vector & v) const
 	return res;
 }
 
-vector vector::operator-(const vector & v) const
+Vector Vector::operator-(const Vector & v) const
 {
 	int max = (size > v.size) ? size : v.size;
 	int min = (size > v.size) ? v.size : size;
-	vector res(max);
+	Vector res(max);
 	for (int i = 0; i < min; i++)
 		res.value[i] = value[i] - v.value[i];
 	if (size > v.size)
@@ -113,7 +113,7 @@ vector vector::operator-(const vector & v) const
 	return res;
 }
 
-vector & vector::operator-=(const vector & v)
+Vector & Vector::operator-=(const Vector & v)
 {
 	int max = (size > v.size) ? size : v.size;
 	int min = (size > v.size) ? v.size : size;
@@ -133,7 +133,7 @@ vector & vector::operator-=(const vector & v)
 	return *this;
 }
 
-vector & vector::operator+=(const vector & v)
+Vector & Vector::operator+=(const Vector & v)
 {
 	int max = (size > v.size) ? size : v.size;
 	int min = (size > v.size) ? v.size : size;
@@ -153,16 +153,16 @@ vector & vector::operator+=(const vector & v)
 	return *this;
 }
 
-vector & vector::operator=(double p)
+Vector & Vector::operator=(double p)
 {
 	for (int i = 0; i < size; i++)
 		value[i] = p;
 	return *this;
 }
 
-vector operator*(double p, const vector& v)
+Vector operator*(double p, const Vector& v)
 {
-	vector res(v.size);
+	Vector res(v.size);
 	for (int i = 0; i < v.size; i++)
 	{
 		res.value[i] = p * v.value[i];
@@ -170,9 +170,9 @@ vector operator*(double p, const vector& v)
 	return res;
 }
 
-vector operator*(const vector& v, double p)
+Vector operator*(const Vector& v, double p)
 {
-	vector res(v.size);
+	Vector res(v.size);
 	for (int i = 0; i < v.size; i++)
 	{
 		res.value[i] = v.value[i] * p;
@@ -180,21 +180,21 @@ vector operator*(const vector& v, double p)
 	return res;
 }
 
-double & vector::operator[](int i)
+double & Vector::operator[](int i)
 {
 	if (i < 0 || i >= size)
 		throw std::exception("Wrong number of value");
 	return value[i];
 }
 
-const double& vector::operator[](int i) const
+const double& Vector::operator[](int i) const
 {
 	if (i < 0 || i >= size)
 		throw std::exception("Wrong number of value");
 	return value[i];
 }
 
-bool vector::operator==(const vector& v) const
+bool Vector::operator==(const Vector& v) const
 {
 	if (size != v.size)
 		return false;
@@ -210,7 +210,7 @@ bool vector::operator==(const vector& v) const
 	return true;
 }
 
-bool vector::operator!=(const vector& v) const
+bool Vector::operator!=(const Vector& v) const
 {
 	if (size != v.size)
 	{
@@ -227,19 +227,19 @@ bool vector::operator!=(const vector& v) const
 	return false;
 }
 
-int vector::GetSize() const
+int Vector::GetSize() const
 {
 	return size;
 }
 
-void vector::swap(int a, int b)
+void Vector::swap(int a, int b)
 {
 	double tmp = value[a];
 	value[a] = value[b];
 	value[b] = tmp;
 }
 
-std::ostream & operator<<(std::ostream & os, const vector & v)
+std::ostream & operator<<(std::ostream & os, const Vector & v)
 {
 	os.width(7);
 	os.precision(2);
@@ -248,7 +248,7 @@ std::ostream & operator<<(std::ostream & os, const vector & v)
 	return os;
 }
 
-std::istream& operator>>(std::istream& is, const vector& v)
+std::istream& operator>>(std::istream& is, const Vector& v)
 {
 	for (int i = 0; i < v.size; i++)
 	{
