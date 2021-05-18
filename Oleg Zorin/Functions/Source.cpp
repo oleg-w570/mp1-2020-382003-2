@@ -11,11 +11,12 @@ using namespace std;
 
 int main()
 {
-	Parabola f;
-	Cos g;
-	algNewton N;
-	algSecant S;
-	Solver My(&f, &N);
+	Func* f;
+	Method* M;
+	f = new Parabola;
+	M = new algNewton;
+
+	Solver My(f, M);
 	double root = My.Solve();
 
 

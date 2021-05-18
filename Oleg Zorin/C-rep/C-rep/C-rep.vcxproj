@@ -139,17 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Solver.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Solver.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="Creation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
